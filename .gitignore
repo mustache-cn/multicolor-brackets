@@ -30,6 +30,7 @@ hs_err_pid*
 build/
 .idea/
 .gradle/
+.run/
 gradle/
 !.idea/icon.png
 !gradle/libs.versions.toml
