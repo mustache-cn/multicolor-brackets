@@ -65,7 +65,6 @@ object MulticolorHighlighter {
         }
     }
 
-    // FIXME: Meta properties(SchemeMetaInfo) should be used.
     fun isMulticolorEnabled(multicolorName: String): Boolean {
         return when (multicolorName) {
             NAME_ROUND_BRACKETS -> settings.isEnableMulticolorRoundBrackets
@@ -76,7 +75,6 @@ object MulticolorHighlighter {
         }
     }
 
-    // FIXME: Meta properties(SchemeMetaInfo) should be used.
     fun setMulticolorEnabled(multicolorName: String, enabled: Boolean) {
         when (multicolorName) {
             NAME_ROUND_BRACKETS -> settings.isEnableMulticolorRoundBrackets = enabled
