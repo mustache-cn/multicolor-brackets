@@ -1,0 +1,9 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <highlightVisitor implementation="cn.com.mustache.multicolor.brackets.visitor.ReactJSXMulticolorVisitor"/>
+    </extensions>
+    <extensions defaultExtensionNs="mustache.multicolor.brackets">
+        <bracePairProvider language="JavaScript"
+                             implementationClass="cn.com.mustache.multicolor.brackets.provider.TSBracePairProvider"/>
+    </extensions>
+</idea-plugin>

@@ -1,0 +1,6 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="mustache.multicolor.brackets">
+        <bracePairProvider language="Dart"
+                             implementationClass="cn.com.mustache.multicolor.brackets.provider.DartBracePairProvider"/>
+    </extensions>
+</idea-plugin>

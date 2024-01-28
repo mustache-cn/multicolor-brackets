@@ -1,0 +1,5 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <annotator language="Haskell" implementationClass="cn.com.mustache.multicolor.brackets.annotator.MulticolorAnnotator"/>
+    </extensions>
+</idea-plugin>

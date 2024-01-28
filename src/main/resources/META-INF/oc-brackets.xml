@@ -1,0 +1,6 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="mustache.multicolor.brackets">
+        <bracePairProvider language="ObjectiveC"
+                             implementationClass="cn.com.mustache.multicolor.brackets.provider.OCBracePairProvider"/>
+    </extensions>
+</idea-plugin>

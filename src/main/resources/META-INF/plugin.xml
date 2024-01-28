@@ -1,0 +1,89 @@
+<idea-plugin require-restart="true">
+    <id>cn.com.mustache.multicolor.brackets</id>
+    <name>Multicolor Brackets</name>
+    <vendor email="steven@mustache.com.cn" url="https://www.mustache.com.cn">Mustache</vendor>
+
+    <description><![CDATA[
+        <strong>Multicolor Brackets for IntelliJ based IDEs/Android Studio/HUAWEI DevEco Studio</strong>
+        <br/>
+
+        <p>Supported languages:</p>
+        <p>Java, Scala, Clojure, Kotlin, Python, Haskell, Agda, Rust, JavaScript, TypeScript, Erlang, Go, Groovy, Ruby,
+            Elixir, ObjectiveC, PHP, HTML, XML, SQL, Apex language, Dart, Pug/Jade, Bash, Vue.js, GLSL(the OpenGL Shading Language), Go Template, C++, C...</p>
+        <br/>
+        <p>NOTE: does NOT support multicolor C# lang and NOT support C++ in Rider IDE</p>
+        <br/>
+        ]]></description>
+
+    <change-notes><![CDATA[
+        <p>0.0。2</p>
+        <ul>
+            <li>Modify description information</li>
+        </ul>
+        ]]>
+    </change-notes>
+
+    <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="223"/>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.lang</depends>
+    <depends optional="true" config-file="kotlin-brackets.xml">org.jetbrains.kotlin</depends>
+    <depends optional="true" config-file="JSX.xml">JavaScript</depends>
+    <depends optional="true" config-file="dart-brackets.xml">Dart</depends>
+    <depends optional="true" config-file="groovy-brackets.xml">org.intellij.groovy</depends>
+    <depends optional="true" config-file="intellij-haskell-annotator.xml">intellij.haskell</depends>
+    <depends optional="true" config-file="oc-brackets.xml">com.intellij.modules.clion</depends>
+    <depends optional="true" config-file="sh-brackets.xml">com.jetbrains.sh</depends>
+    <depends optional="true" config-file="php-brackets.xml">com.jetbrains.php</depends>
+    <depends optional="true" config-file="go-template-brackets.xml">org.jetbrains.plugins.go-template</depends>
+    <depends optional="true" config-file="META-INF/jade-multicolor-visitor.xml">com.jetbrains.plugins.jade</depends>
+
+    <extensionPoints>
+        <extensionPoint name="bracePairProvider" beanClass="com.intellij.lang.LanguageExtensionPoint" dynamic="true">
+            <with attribute="implementationClass"
+                  implements="cn.com.mustache.multicolor.brackets.provider.BracePairProvider"/>
+        </extensionPoint>
+    </extensionPoints>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <highlightVisitor implementation="cn.com.mustache.multicolor.brackets.visitor.DefaultMulticolorVisitor"/>
+        <highlightVisitor implementation="cn.com.mustache.multicolor.brackets.visitor.XmlMulticolorVisitor"/>
+
+        <applicationConfigurable instance="cn.com.mustache.multicolor.brackets.settings.MulticolorConfigurable"/>
+        <applicationService
+                serviceImplementation="cn.com.mustache.multicolor.brackets.settings.MulticolorSettings"/>
+        <colorAndFontPanelFactory
+                implementation="cn.com.mustache.multicolor.brackets.settings.MulticolorColorsPageFactory"/>
+        <colorAndFontDescriptorProvider
+                implementation="cn.com.mustache.multicolor.brackets.settings.MulticolorColorsPageFactory"/>
+
+        <additionalTextAttributes scheme="Default" file="colorSchemes/multicolor-color-default.xml"/>
+        <additionalTextAttributes scheme="Darcula" file="colorSchemes/multicolor-color-default-darcula.xml"/>
+        <highlightingPassFactory implementation="cn.com.mustache.multicolor.brackets.indents.MulticolorIndentsPassFactory"/>
+        <editorNotificationProvider implementation="cn.com.mustache.multicolor.brackets.MulticolorBanner"/>
+        <editorNotificationProvider implementation="cn.com.mustache.multicolor.brackets.MulticolorBanner"/>
+        <notificationGroup id="Multicolor Brackets Notification Group" displayType="STICKY_BALLOON"/>
+    </extensions>
+
+    <actions>
+        <action class="cn.com.mustache.multicolor.brackets.action.ScopeHighlightingAction"
+                id="Multicolor.ScopeHighlightingAction"
+                text="Highlight Current Scope"
+                description="Highlight current scope.">
+            <mouse-shortcut keymap="$default" keystroke="control button3"/>
+            <mouse-shortcut keymap="Mac OS X" keystroke="meta button3"/>
+            <mouse-shortcut keymap="Mac OS X 10.5+" keystroke="meta button3"/>
+        </action>
+        <action class="cn.com.mustache.multicolor.brackets.action.ScopeOutsideHighlightingRestrainAction"
+                id="Multicolor.ScopeOutsideHighlightingRestrainAction"
+                text="Restrain Scope Highlighting"
+                description="Restrain outside of current scope highlighting.">
+            <mouse-shortcut keymap="$default" keystroke="alt button3"/>
+            <mouse-shortcut keymap="Mac OS X" keystroke="alt button3"/>
+            <mouse-shortcut keymap="Mac OS X 10.5+" keystroke="alt button3"/>
+        </action>
+    </actions>
+
+</idea-plugin>
