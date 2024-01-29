@@ -5,6 +5,7 @@ import cn.com.mustache.multicolor.brackets.util.alphaBlend
 import com.intellij.codeInsight.highlighting.HighlightManager
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.colors.EditorColorsManager
+import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.editor.markup.EffectType
 import com.intellij.openapi.editor.markup.RangeHighlighter
 import com.intellij.openapi.editor.markup.TextAttributes
@@ -16,7 +17,7 @@ class ScopeHighlightingAction : AbstractScopeHighlightingAction() {
 
     override fun Editor.addHighlighter(
         highlightManager: HighlightManager,
-        multicolorInfo: cn.com.mustache.multicolor.brackets.MulticolorInfo
+        multicolorInfo: MulticolorInfo
     ): Collection<RangeHighlighter> {
         val defaultBackground = EditorColorsManager.getInstance().globalScheme.defaultBackground
         val background = multicolorInfo.color.alphaBlend(defaultBackground, 0.2f)

@@ -76,11 +76,11 @@ abstract class MulticolorHighlightVisitor : HighlightVisitor {
         startElement: PsiElement?,
         endElement: PsiElement?
     ) {
-        val multicolorInfo = cn.com.mustache.multicolor.brackets.MulticolorInfo.MULTICOLOR_INFO_KEY[this]?.also {
+        val multicolorInfo = MulticolorInfo.MULTICOLOR_INFO_KEY[this]?.also {
             it.level = level
             it.color = color
-        } ?: cn.com.mustache.multicolor.brackets.MulticolorInfo(level, color)
-            .also { cn.com.mustache.multicolor.brackets.MulticolorInfo.MULTICOLOR_INFO_KEY[this] = it }
+        } ?: MulticolorInfo(level, color)
+            .also { MulticolorInfo.MULTICOLOR_INFO_KEY[this] = it }
 
         startElement?.let { multicolorInfo.startElement = it }
         endElement?.let { multicolorInfo.endElement = it }

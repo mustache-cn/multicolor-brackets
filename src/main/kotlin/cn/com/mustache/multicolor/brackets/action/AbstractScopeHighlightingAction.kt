@@ -49,7 +49,7 @@ abstract class AbstractScopeHighlightingAction : AnAction() {
 
     protected abstract fun Editor.addHighlighter(
         highlightManager: HighlightManager,
-        multicolorInfo: cn.com.mustache.multicolor.brackets.MulticolorInfo
+        multicolorInfo: MulticolorInfo
     ): Collection<RangeHighlighter>
 
     private class HighlightingDisposer(
@@ -88,11 +88,15 @@ abstract class AbstractScopeHighlightingAction : AnAction() {
 
         private val AnActionEvent.editor: Editor? get() = CommonDataKeys.EDITOR.getData(dataContext)
 
-        private fun PsiElement.getMulticolorInfo(offset: Int): cn.com.mustache.multicolor.brackets.MulticolorInfo? {
-            return cn.com.mustache.multicolor.brackets.MulticolorInfo.MULTICOLOR_INFO_KEY[this]?.takeIf { it.containsOffset(offset) }
+        private fun PsiElement.getMulticolorInfo(offset: Int): MulticolorInfo? {
+            return MulticolorInfo.MULTICOLOR_INFO_KEY[this]?.takeIf {
+                it.containsOffset(
+                    offset
+                )
+            }
         }
 
-        private fun PsiFile.findMulticolorInfoAt(offset: Int): cn.com.mustache.multicolor.brackets.MulticolorInfo? {
+        private fun PsiFile.findMulticolorInfoAt(offset: Int): MulticolorInfo? {
             var element = findElementAt(offset)
             while (element != null) {
                 element.getMulticolorInfo(offset)?.let { return it }

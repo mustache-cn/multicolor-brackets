@@ -35,6 +35,6 @@ data class MulticolorInfo(var level: Int, var color: Color) {
     }
 
     companion object {
-        val MULTICOLOR_INFO_KEY: Key<cn.com.mustache.multicolor.brackets.MulticolorInfo> = Key.create("MULTICOLOR_INFO")
+        val MULTICOLOR_INFO_KEY: Key<MulticolorInfo> = Key.create("MULTICOLOR_INFO")
     }
 }

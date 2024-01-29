@@ -40,7 +40,7 @@ class MulticolorIndentsPass internal constructor(
     private val myFile: PsiFile
 ) : TextEditorHighlightingPass(project, editor.document, false), DumbAware {
 
-    private val rangesWithMulticolorInfo = mutableMapOf<TextRange, cn.com.mustache.multicolor.brackets.MulticolorInfo?>()
+    private val rangesWithMulticolorInfo = mutableMapOf<TextRange, MulticolorInfo?>()
 
     private val myEditor: EditorEx = editor as EditorEx
 
@@ -352,7 +352,7 @@ class MulticolorIndentsPass internal constructor(
         private fun createHighlighter(
             mm: MarkupModel,
             range: TextRange,
-            rangesWithMulticolorInfo: MutableMap<TextRange, cn.com.mustache.multicolor.brackets.MulticolorInfo?>
+            rangesWithMulticolorInfo: MutableMap<TextRange, MulticolorInfo?>
         ): RangeHighlighter {
             return mm.addRangeHighlighter(
                 range.startOffset,

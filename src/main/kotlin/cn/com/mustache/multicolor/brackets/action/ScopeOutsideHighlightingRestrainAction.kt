@@ -16,7 +16,7 @@ class ScopeOutsideHighlightingRestrainAction : AbstractScopeHighlightingAction()
 
     override fun Editor.addHighlighter(
         highlightManager: HighlightManager,
-        multicolorInfo: cn.com.mustache.multicolor.brackets.MulticolorInfo
+        multicolorInfo: MulticolorInfo
     ): Collection<RangeHighlighter> {
         val defaultBackground = EditorColorsManager.getInstance().globalScheme.defaultBackground
         val background = Color.GRAY.alphaBlend(defaultBackground, 0.05f)

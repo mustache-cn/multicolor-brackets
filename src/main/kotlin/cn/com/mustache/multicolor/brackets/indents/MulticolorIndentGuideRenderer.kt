@@ -28,7 +28,7 @@ import java.awt.Graphics2D
 /** From [com.intellij.codeInsight.daemon.impl.IndentGuideRenderer]
  *  Commit history : https://sourcegraph.com/github.com/JetBrains/intellij-community/-/blob/platform/lang-impl/src/com/intellij/codeInsight/daemon/impl/IndentGuideRenderer.java#tab=history
  * */
-class MulticolorIndentGuideRenderer(val rangesWithMulticolorInfo: MutableMap<TextRange, cn.com.mustache.multicolor.brackets.MulticolorInfo?>) :
+class MulticolorIndentGuideRenderer(val rangesWithMulticolorInfo: MutableMap<TextRange, MulticolorInfo?>) :
     CustomHighlighterRenderer {
     override fun paint(editor: Editor, highlighter: RangeHighlighter, g: Graphics) {
         if (editor !is EditorEx) return
@@ -160,7 +160,7 @@ class MulticolorIndentGuideRenderer(val rangesWithMulticolorInfo: MutableMap<Tex
             element is XmlToken && element.tokenType == XmlTokenType.XML_TAG_END
         }
 
-        fun getMulticolorInfo(editor: EditorEx, textRange: TextRange): cn.com.mustache.multicolor.brackets.MulticolorInfo? {
+        fun getMulticolorInfo(editor: EditorEx, textRange: TextRange): MulticolorInfo? {
             val virtualFile = editor.virtualFile?.takeIf { it.isValid } ?: return null
             val document = editor.document
             val project = editor.project ?: return null
@@ -171,10 +171,10 @@ class MulticolorIndentGuideRenderer(val rangesWithMulticolorInfo: MutableMap<Tex
                 return null
             }
 
-            var multicolorInfo = cn.com.mustache.multicolor.brackets.MulticolorInfo.MULTICOLOR_INFO_KEY[element]
+            var multicolorInfo = MulticolorInfo.MULTICOLOR_INFO_KEY[element]
             if (multicolorInfo == null && psiFile is XmlFile && element !is XmlTag) {
                 element = PsiTreeUtil.findFirstParent(element, true, XML_TAG_PARENT_CONDITION) ?: return null
-                multicolorInfo = cn.com.mustache.multicolor.brackets.MulticolorInfo.MULTICOLOR_INFO_KEY[element] ?: return null
+                multicolorInfo = MulticolorInfo.MULTICOLOR_INFO_KEY[element] ?: return null
             }
 
             if (!element.isValid || !checkBoundary(document, element, textRange)) {

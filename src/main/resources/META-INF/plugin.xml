@@ -65,6 +65,7 @@
         <editorNotificationProvider implementation="cn.com.mustache.multicolor.brackets.MulticolorBanner"/>
         <editorNotificationProvider implementation="cn.com.mustache.multicolor.brackets.MulticolorBanner"/>
         <notificationGroup id="Multicolor Brackets Notification Group" displayType="STICKY_BALLOON"/>
+
     </extensions>
 
     <actions>
