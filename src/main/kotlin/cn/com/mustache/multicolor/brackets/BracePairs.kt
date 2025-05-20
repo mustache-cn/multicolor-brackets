@@ -1,7 +1,7 @@
 package cn.com.mustache.multicolor.brackets
 
-import cn.com.mustache.multicolor.brackets.util.memoize
 import cn.com.mustache.multicolor.brackets.provider.BracePairProvider
+import cn.com.mustache.multicolor.brackets.util.memoize
 import com.intellij.codeInsight.highlighting.BraceMatchingUtil
 import com.intellij.lang.*
 import com.intellij.psi.tree.IElementType
@@ -10,7 +10,7 @@ object BracePairs {
 
     private val providers = LanguageExtension<BracePairProvider>("mustache.multicolor.brackets.bracePairProvider")
 
-    private val bracePairs =
+    private val bracePairs by lazy {
         Language.getRegisteredLanguages()
             .map { language ->
                 if (language is CompositeLanguage) {
@@ -67,6 +67,7 @@ object BracePairs {
                 language.displayName to braceMap
             }
             .toMap()
+    }
 
     fun getBracePairs(language: Language): MutableMap<String, MutableList<BracePair>>? =
         bracePairs[language.displayName]
